@@ -1,0 +1,51 @@
+IMAPAccount fastmail
+Host imap.fastmail.com
+Port 993
+User nat@ferrus.net
+Pass [pass]
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore fastmail-remote
+Account fastmail
+
+MailDirStore fastmail-local
+Path ~/Sync/Mail/Fastmail/
+Inbox ~/Sync/Mail/Fastmail/Inbox
+SubFolders Verbatim
+MaxSize 20M
+
+Channel fastmail
+Master :fastmail-remote:
+Slave  :fastmail-local:
+Pattern *
+Create Both
+SyncState *
+Sync All
+Expunge Both
+
+IMAPAccount neu
+Host outlook.office365.com
+Port 993
+User 7271112@northeastern.edu
+Pass [pass]
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore neu-remote
+Account neu
+
+MailDirStore neu-local
+Path ~/Sync/Mail/NEU/
+Inbox ~/Sync/Mail/NEU/Inbox
+SubFolders Verbatim
+MaxSize 20M
+
+Channel neu
+Master :neu-remote:
+Slave :neu-local:
+Pattern *
+Create Both
+SyncState *
+Sync All
+Expunge Both

@@ -1,0 +1,31 @@
+# In later version, should be able to:
+#  - move this to ~/.config/msmtp
+#  - remove tls-certcheck off
+
+########################
+account fastmail
+host smtp.fastmail.com
+port 465
+tls on
+tls_starttls off
+tls_certcheck off
+auth on
+user nat@ferrus.net
+password [pass]
+from nat@ferrus.net
+remove_bcc_headers off
+logfile /home/nat/.local/log/mail-fastmail.log
+
+########################
+account neu
+host smtp.office365.com
+port 587
+tls on
+tls_starttls on
+tls_certcheck off
+auth on
+user 7271112@northeastern.edu
+password [pass]
+from n.tuck@neu.edu
+remove_bcc_headers off
+logfile /home/nat/.local/log/mail-neu.log
