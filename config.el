@@ -29,9 +29,9 @@
 (evil-ex-define-cmd "wq" 'liu233w/ex-save-kill-buffer-and-close)
 
 (defun my-compose-mode-hook ()
-  (message "In compose mode"))
+  (local-set-key (kbd "C-c C-c") #'message-send-and-exit))
 
-(add-hook 'mu4e-compose-mode 'my-compose-mode-hook)
+;(add-hook 'mu4e-compose-mode-hook 'my-compose-mode-hook)
 
 (add-hook 'after-change-major-mode-hook
           (lambda()
@@ -89,6 +89,7 @@
                    (user-full-name	    	. "Nat Tuck")
                    (mu4e-drafts-folder		. "/Fastmail/Drafts")
                    (mu4e-trash-folder		. "/Fastmail/Trash")
+                   (mu4e-refile-folder		. "/Fastmail/Archive")
                    ))
         ,(make-mu4e-context
           :name "NEU"
@@ -102,5 +103,6 @@
                    (user-full-name	    	. "Nat Tuck")
                    (mu4e-drafts-folder		. "/NEU/Drafts")
                    (mu4e-trash-folder		. "/NEU/Trash")
+                   (mu4e-refile-folder		. "/NEU/Archive")
                    ))
         ))
