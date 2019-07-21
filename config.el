@@ -31,6 +31,11 @@
 (defun my-compose-mode-hook ()
   (local-set-key (kbd "C-c C-c") #'message-send-and-exit))
 
+(with-eval-after-load 'rjsx-mode
+  (define-key rjsx-mode-map "<" nil)
+  (define-key rjsx-mode-map (kbd "C-d") nil)
+  (define-key rjsx-mode-map ">" nil))
+
 ;(add-hook 'mu4e-compose-mode-hook 'my-compose-mode-hook)
 
 (add-hook 'after-change-major-mode-hook
@@ -60,6 +65,11 @@
   (setq js2-basic-offset 2))
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
+(add-hook
+ 'rust-mode-hook
+ (lambda ()
+   (racer-mode)
+   (setq-local eldoc-documentation-function #'ignore)
 
 ;; Mail
 (setq mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum)
