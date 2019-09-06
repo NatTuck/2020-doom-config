@@ -69,6 +69,8 @@
 
 
 ;; Mail
+(setq mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum)
+
 (setq mu4e-maildir "/home/nat/Sync/Mail"
       mu4e-drafts-folder "/Drafts"
       user-mail-address "nat@ferrus.net"
@@ -80,6 +82,7 @@
       message-sendmail-extra-arguments '("--read-envelope-from")
       message-sendmail-f-is-evil 't
       mu4e-get-mail-command "mbsync -a"
+      mu4e-update-interval 300
       )
 
 (setq mu4e-contexts
@@ -97,6 +100,7 @@
                    (mu4e-drafts-folder		. "/Fastmail/Drafts")
                    (mu4e-trash-folder		. "/Fastmail/Trash")
                    (mu4e-refile-folder		. "/Fastmail/Archive")
+                   (mu4e-sent-folder		. "/Fastmail/Sent")
                    ))
         ,(make-mu4e-context
           :name "NEU"
@@ -111,5 +115,12 @@
                    (mu4e-drafts-folder		. "/NEU/Drafts")
                    (mu4e-trash-folder		. "/NEU/Trash")
                    (mu4e-refile-folder		. "/NEU/Archive")
+                   (mu4e-sent-folder		. "/NEU/Sent")
                    ))
         ))
+
+;; Maybe fix some CPU issues
+(setq history-length 10)
+(put 'minibuffer-history 'history-length 50)
+(put 'evil-ex-history 'history-length 50)
+(put 'kill-ring 'history-length 25)
