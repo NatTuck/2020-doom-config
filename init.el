@@ -9,10 +9,10 @@
 ;; found in modules/README.org.
 
 ; note: Ubuntu packages maildir-utils mu4e
-(eval-when-compile
-  (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-  (require 'use-package))
-(use-package mu4e)
+;(eval-when-compile
+;  (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+;  (require 'use-package))
+;(use-package mu4e)
 
 (doom! :input
        ;;chinese
@@ -154,7 +154,7 @@
        ;;vala              ; GObjective-C
 
        :email
-       mu4e
+       ;;mu4e
        ;;(mu4e +gmail)       ; WIP
        ;;notmuch             ; WIP
        ;;(wanderlust +gmail) ; WIP
@@ -164,8 +164,8 @@
        ;; should be loaded late.
        :app
        ;;calendar
-       ;;irc              ; how neckbeards socialize
-       ;;rss +org        ; emacs as an RSS reader
+       ;;irc               ; how neckbeards socialize
+       ;;rss +org          ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
        ;;(write            ; emacs as a word processor (latex + org + markdown)
        ;; +wordnut         ; wordnet (wn) search

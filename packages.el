@@ -8,4 +8,5 @@
 ;(package! file-templates :disable t)
 
 (package! emacs-snippets :disable t)
+(package! notmuch)
 ;(package! mu4e-conversation) # Enable with updated distro

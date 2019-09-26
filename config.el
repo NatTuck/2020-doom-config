@@ -14,10 +14,6 @@
           doom-big-font (font-spec :family "Hack" :size 40)))
 
 ;; Key Bindings
-(map! :leader
-      (:prefix-map ("o" . "open")
-                   :desc "Email" "e" #'=mu4e))
-
 (define-key evil-normal-state-map "Q" 'fill-paragraph)
 
 (defun liu233w/ex-kill-buffer-and-close ()
@@ -35,8 +31,10 @@
 (evil-ex-define-cmd "q[uit]" 'liu233w/ex-kill-buffer-and-close)
 (evil-ex-define-cmd "wq" 'liu233w/ex-save-kill-buffer-and-close)
 
-(defun my-compose-mode-hook ()
-  (local-set-key (kbd "C-c C-c") #'message-send-and-exit))
+(with-eval-after-load 'rjsx-mode
+  (define-key rjsx-mode-map "<" nil)
+  (define-key rjsx-mode-map (kbd "C-d") nil)
+  (define-key rjsx-mode-map ">" nil))
 
 ;(add-hook 'mu4e-compose-mode-hook 'my-compose-mode-hook)
 
@@ -67,60 +65,29 @@
   (setq js2-basic-offset 2))
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
+(add-hook
+ 'rust-mode-hook
+ (lambda ()
+   (racer-mode)
+   (setq-local eldoc-documentation-function #'ignore)))
 
 ;; Mail
-(setq mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum)
-
-(setq mu4e-maildir "/home/nat/Sync/Mail"
-      mu4e-drafts-folder "/Drafts"
-      user-mail-address "nat@ferrus.net"
-      user-full-name "Nat Tuck"
-      mail-user-agent 'message-user-agent
-      send-mail-function 'message-send-mail-with-sendmail
-      message-send-mail-function 'message-send-mail-with-sendmail
-      sendmail-program "/usr/bin/msmtp"
-      message-sendmail-extra-arguments '("--read-envelope-from")
-      message-sendmail-f-is-evil 't
-      mu4e-get-mail-command "mbsync -a"
-      mu4e-update-interval 300
-      )
-
-(setq mu4e-contexts
-      `(
-        ,(make-mu4e-context
-          :name "Fastmail"
-          :enter-func (lambda () (mu4e-message "enter context Fastmail"))
-          :leave-func (lambda () (mu4e-message "leave context Fastmail"))
-          ;; we match based on the contact-fields of the message
-          :match-func (lambda (msg)
-                        (when msg
-                          (string-match-p "^/Mail/Fastmail" (mu4e-message-field msg :maildir))))
-          :vars '( (user-mail-address		. "nat@ferrus.net")
-                   (user-full-name	    	. "Nat Tuck")
-                   (mu4e-drafts-folder		. "/Fastmail/Drafts")
-                   (mu4e-trash-folder		. "/Fastmail/Trash")
-                   (mu4e-refile-folder		. "/Fastmail/Archive")
-                   (mu4e-sent-folder		. "/Fastmail/Sent")
-                   ))
-        ,(make-mu4e-context
-          :name "NEU"
-          :enter-func (lambda () (mu4e-message "enter context NEU"))
-          :leave-func (lambda () (mu4e-message "leave context NEU"))
-          ;; we match based on the contact-fields of the message
-          :match-func (lambda (msg)
-                        (when msg
-                          (string-match-p "^/Mail/NEU" (mu4e-message-field msg :maildir))))
-          :vars '( (user-mail-address		. "n.tuck@neu.edu")
-                   (user-full-name	    	. "Nat Tuck")
-                   (mu4e-drafts-folder		. "/NEU/Drafts")
-                   (mu4e-trash-folder		. "/NEU/Trash")
-                   (mu4e-refile-folder		. "/NEU/Archive")
-                   (mu4e-sent-folder		. "/NEU/Sent")
-                   ))
-        ))
 
 ;; Maybe fix some CPU issues
 (setq history-length 10)
 (put 'minibuffer-history 'history-length 50)
 (put 'evil-ex-history 'history-length 50)
 (put 'kill-ring 'history-length 25)
+
+
+;; Projectile
+;;     Why doesn't this work?
+;; (add-hook
+;;  'after-init-hook
+;;  (lambda ()
+;;    (projectile-register-project-type
+;;     'mix '("mix.exs")
+;;     :compile "mix compile"
+;;     :test "mix test"
+;;     :run "mix phx.server"
+;;     :test-suffix "_test")))
