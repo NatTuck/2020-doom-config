@@ -37,6 +37,7 @@
   (define-key rjsx-mode-map ">" nil))
 
 ;(add-hook 'mu4e-compose-mode-hook 'my-compose-mode-hook)
+(global-eldoc-mode -1)
 
 (add-hook 'after-change-major-mode-hook
           (lambda()
@@ -44,6 +45,13 @@
             (smartparens-global-mode -1)
             (auto-insert-mode 0)
             ))
+
+(defun my-markdown-mode-hook ()
+  (electric-indent-local-mode -1)
+  (markdown-gfm-use-electric-backquote nil))
+
+(add-hook 'markdown-mode-hook
+          'my-markdown-mode-hook)
 
 (setq company-idle-delay nil)
 
@@ -64,6 +72,11 @@
 (defun my-js2-mode-hook ()
   (setq js2-basic-offset 2))
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
+
+(defun my-json-mode-hook ()
+  (make-local-variable 'js-indent-level)
+  (setq js-indent-level 2))
+(add-hook 'json-mode-hook 'my-json-mode-hook)
 
 (add-hook
  'rust-mode-hook

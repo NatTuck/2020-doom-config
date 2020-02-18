@@ -9,4 +9,5 @@
 
 (package! emacs-snippets :disable t)
 (package! notmuch)
+(package! wgrep-ag)
 ;(package! mu4e-conversation) # Enable with updated distro
