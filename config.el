@@ -8,10 +8,16 @@
           doom-big-font (font-spec :family "Hack" :size 28)))
 
 (if (string-equal (system-name) "greyarea")
-    (setq doom-font (font-spec :family "Hack" :size 32)
+    (setq doom-font (font-spec :family "Hack" :size 36)
           doom-variable-pitch-font (font-spec :family "DejaVu Sans")
           doom-unicode-font (font-spec :family "DejaVu Sans Mono")
-          doom-big-font (font-spec :family "Hack" :size 36)))
+          doom-big-font (font-spec :family "Hack" :size 40)))
+
+(if (string-equal (system-name) "celedyr")
+    (setq doom-font (font-spec :family "Hack" :size 20)
+          doom-variable-pitch-font (font-spec :family "DejaVu Sans")
+          doom-unicode-font (font-spec :family "DejaVu Sans Mono")
+          doom-big-font (font-spec :family "Hack" :size 26)))
 
 ;; Key Bindings
 (define-key evil-normal-state-map "Q" 'fill-paragraph)
