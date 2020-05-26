@@ -45,8 +45,14 @@
 ;(add-hook 'mu4e-compose-mode-hook 'my-compose-mode-hook)
 (global-eldoc-mode -1)
 
+(add-hook 'buffer-list-update-hook
+          (lambda () (global-eldoc-mode -1)))
+
+; Prevent emacs from grabbing mouse.
+;(setq server-raise-frame nil)
+
 (add-hook 'after-change-major-mode-hook
-          (lambda()
+          (lambda ()
             (setq counsel-find-file-ignore-regexp (rx ".#"))
             (smartparens-global-mode -1)
             (auto-insert-mode 0)
@@ -90,23 +96,15 @@
    (racer-mode)
    (setq-local eldoc-documentation-function #'ignore)))
 
-;; Mail
-
 ;; Maybe fix some CPU issues
-(setq history-length 10)
-(put 'minibuffer-history 'history-length 50)
-(put 'evil-ex-history 'history-length 50)
-(put 'kill-ring 'history-length 25)
+;(setq history-length 10)
+;(put 'minibuffer-history 'history-length 50)
+;(put 'evil-ex-history 'history-length 50)
+;(put 'kill-ring 'history-length 25)
 
-
-;; Projectile
-;;     Why doesn't this work?
-;; (add-hook
-;;  'after-init-hook
-;;  (lambda ()
-;;    (projectile-register-project-type
-;;     'mix '("mix.exs")
-;;     :compile "mix compile"
-;;     :test "mix test"
-;;     :run "mix phx.server"
-;;     :test-suffix "_test")))
+;; Try to prevent undo-tree stack overflows.
+(setq undo-limit 40000
+      undo-outer-limit 8000000
+      undo-strong-limit 100000)
+(after! undo-tree
+  (setq undo-tree-auto-save-history nil))

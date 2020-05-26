@@ -8,6 +8,9 @@
 ;(package! file-templates :disable t)
 
 (package! emacs-snippets :disable t)
+(package! ivy-rich :disable t)
+(package! goto-addr :disable t)
+
 (package! notmuch)
 (package! wgrep-ag)
 ;(package! mu4e-conversation) # Enable with updated distro
