@@ -96,6 +96,8 @@
    (racer-mode)
    (setq-local eldoc-documentation-function #'ignore)))
 
+(setq! comment-line-break-function nil)
+
 ;; Maybe fix some CPU issues
 ;(setq history-length 10)
 ;(put 'minibuffer-history 'history-length 50)
