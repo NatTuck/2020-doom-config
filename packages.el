@@ -6,10 +6,10 @@
 ;; (package! another-package :recipe (:fetcher github :repo "username/repo"))
 ;; (package! builtin-package :disable t)
 ;(package! file-templates :disable t)
-
 (package! emacs-snippets :disable t)
 (package! ivy-rich :disable t)
 (package! goto-addr :disable t)
+;(package! evil-surround :disable t)
 
 (package! notmuch)
 (package! wgrep-ag)

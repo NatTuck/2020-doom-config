@@ -24,6 +24,7 @@
           doom-variable-pitch-font (font-spec :family "DejaVu Sans")
           doom-unicode-font (font-spec :family "DejaVu Sans Mono")
           doom-big-font (font-spec :family "Hack" :size 26)))
+
 ;; Key Bindings
 (define-key evil-normal-state-map "Q" 'fill-paragraph)
 
@@ -51,15 +52,14 @@
 (global-eldoc-mode -1)
 
 (add-hook 'buffer-list-update-hook
-          (lambda () (global-eldoc-mode -1)))
-
-; Prevent emacs from grabbing mouse.
-;(setq server-raise-frame nil)
+          (lambda () 
+            (global-eldoc-mode -1)))
 
 (add-hook 'after-change-major-mode-hook
           (lambda ()
             (setq counsel-find-file-ignore-regexp (rx ".#"))
             (smartparens-global-mode -1)
+            (global-evil-surround-mode 1)
             (auto-insert-mode 0)
             ))
 
@@ -69,6 +69,9 @@
 
 (add-hook 'markdown-mode-hook
           'my-markdown-mode-hook)
+
+; Prevent emacs from grabbing mouse.
+;(setq server-raise-frame nil)
 
 (setq company-idle-delay nil)
 
@@ -87,7 +90,8 @@
 (add-to-list 'auto-mode-alist '("\\.eex$" . web-mode))
 
 (defun my-js2-mode-hook ()
-  (setq js2-basic-offset 2))
+  (setq js2-basic-offset 2)
+  (setq! comment-line-break-function nil))
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
 (defun my-json-mode-hook ()
@@ -100,6 +104,7 @@
  (lambda ()
    (racer-mode)
    (setq-local eldoc-documentation-function #'ignore)))
+
 
 (setq! comment-line-break-function nil)
 
