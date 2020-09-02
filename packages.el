@@ -9,6 +9,7 @@
 (package! emacs-snippets :disable t)
 (package! ivy-rich :disable t)
 (package! goto-addr :disable t)
+(package! emmet-mode :disable t)
 ;(package! evil-surround :disable t)
 
 (package! notmuch)
