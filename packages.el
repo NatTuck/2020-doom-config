@@ -14,3 +14,5 @@
 (package! notmuch)
 (package! wgrep-ag)
 ;(package! mu4e-conversation) # Enable with updated distro
+
+(package! arduino-mode)
