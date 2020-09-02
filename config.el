@@ -105,6 +105,10 @@
    (racer-mode)
    (setq-local eldoc-documentation-function #'ignore)))
 
+(add-hook
+  'nxml-mode-hook
+  (lambda ()
+    (setq nxml-slash-auto-complete-flag nil)))
 
 (setq! comment-line-break-function nil)
 
