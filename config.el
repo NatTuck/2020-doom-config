@@ -110,6 +110,15 @@
   (lambda ()
     (setq nxml-slash-auto-complete-flag nil)))
 
+(defun my-c-mode-common-hook ()
+  (setq c-set-style "stroustrup")
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 4)
+  (setq c-basic-offset 4)
+  (c-set-offset 'access-label '/)
+  )
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
 (setq! comment-line-break-function nil)
 
 ;; Maybe fix some CPU issues
@@ -123,4 +132,4 @@
       undo-outer-limit 8000000
       undo-strong-limit 100000)
 (after! undo-tree
-  (setq undo-tree-auto-save-history nil))
+        (setq undo-tree-auto-save-history nil))
